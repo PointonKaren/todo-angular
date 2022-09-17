@@ -1,0 +1,14 @@
+<div class="list">
+  <h2>Liste des tâches</h2>
+  <ul id="todoList" *ngFor="let task of tasks">
+    <li>
+      {{ task.text }} {{ task.id }}
+      <span class="detail-button" (click)="onSelect(task)">🔍</span>
+      <button class="delete" (click)="deleteTask(task)">✕</button>
+    </li>
+  </ul>
+  <div *ngIf="selectedTask">
+    <h2>{{ selectedTask.description }}</h2>
+    <span>id: {{ selectedTask.id }}</span>
+  </div>
+</div>

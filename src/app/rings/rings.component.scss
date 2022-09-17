@@ -1,0 +1,32 @@
+@import "../../style/utils/variables";
+
+.rings {
+  border-bottom: 1px dashed black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  .ring {
+    background-color: $notebook;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    position: relative;
+    margin-bottom: 8px;
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: silver;
+      border-radius: 5px;
+      top: -35px;
+      left: 8px;
+      width: 5px;
+      height: 45px;
+    }
+  }
+}
