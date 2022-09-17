@@ -1,0 +1,77 @@
+@import "../../style/utils/variables";
+
+header {
+  h1 {
+    margin: 0;
+  }
+}
+
+main {
+  background-color: $notebook;
+  border-radius: 5px;
+  max-width: 380px;
+  height: 80vh;
+  min-height: 520px;
+  margin: auto;
+  padding: 5% 5% 2% 5%;
+  position: relative;
+  top: 40px;
+  #content {
+    position: relative;
+    max-width: 350px;
+    margin: auto;
+    border-radius: 3px;
+    background-color: $page;
+    height: 75vh;
+    min-height: 480px;
+    &:before {
+      content: "";
+      background-color: $page;
+      border-top: 1px dashed black;
+      width: 100%;
+      max-width: 380px;
+      height: 32px;
+      position: absolute;
+      top: -51px;
+    }
+    #todos {
+      overflow: hidden;
+    }
+  }
+}
+
+footer {
+  position: relative;
+  top: 40px;
+  #copyright {
+    width: 100%;
+    text-align: center;
+    &-text {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  main {
+    padding: 15px 15px 0 15px;
+    margin-top: 50px;
+  }
+  footer {
+    top: 0;
+    #copyright {
+      &-text {
+        display: inline;
+        .copyright {
+          padding-right: 2px;
+          position: relative;
+          bottom: 2px;
+          font-size: 0.8em;
+        }
+      }
+      &-logo {
+        display: none;
+      }
+    }
+  }
+}

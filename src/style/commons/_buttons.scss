@@ -1,0 +1,26 @@
+@import "../utils/variables";
+
+button {
+  cursor: pointer;
+}
+.detail-button,
+.delete-button {
+  border: 3px solid;
+  border-radius: 50px;
+  background-color: transparent;
+}
+
+.detail-button {
+  font-size: 0.8rem;
+  padding: 4px;
+  margin: 0;
+}
+
+.delete-button {
+  border-color: $delete;
+  color: $delete;
+  margin-left: 5px;
+  font-size: 1rem;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

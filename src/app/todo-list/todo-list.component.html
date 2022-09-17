@@ -1,11 +1,31 @@
-<div class="list">
+<div id="list">
   <h2>Liste des tâches</h2>
+  <p>
+    <span class="numberOfTodos">Il y a 4 tâches dans la liste</span>
+    <span class="numberOfChecked">dont 2 cochées.</span>
+  </p>
   <div *ngIf="tasks.length > 0">
     <ul id="todoList">
-      <li *ngFor="let task of tasks">
-        {{ task.text }} {{ task.id }}
-        <span class="detail-button" (click)="displayDetail(task)">🔍</span>
-        <button class="delete" (click)="deleteTask(task)">✕</button>
+      <li *ngFor="let task of tasks" class="todo-item">
+        <input type="checkbox" id="{{ task.id }}" />
+        <label for="{{ task.id }}" class="tick js-tick"></label>
+        <span>{{ task.text }}</span>
+        <button class="detail-button" (click)="displayDetail(task)">🔍</button>
+        <button class="delete-button" (click)="deleteTask(task)">✕</button>
+      </li>
+      <li class="todo-item done">
+        <input type="checkbox" id="0" />
+        <label for="0" class="tick js-tick"></label>
+        <span>yo 2</span>
+        <button class="detail-button">🔍</button>
+        <button class="delete-button">✕</button>
+      </li>
+      <li class="todo-item">
+        <input type="checkbox" id="0" />
+        <label for="0" class="tick js-tick"></label>
+        <span>yo 2</span>
+        <button class="detail-button">🔍</button>
+        <button class="delete-button">✕</button>
       </li>
     </ul>
   </div>
@@ -16,4 +36,9 @@
       (onClick)="closeDetail($event)"
     ></app-task-description>
   </div>
+  <!-- <div id="detailedTask">
+    <button class="delete-button delete-postit">✕</button>
+    <h3 id="detailedTask--text">a aa aaaaa aaaaaaa</h3>
+    <p id="detailedTask--description">42</p>
+  </div> -->
 </div>

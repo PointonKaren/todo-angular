@@ -28,5 +28,27 @@
       width: 5px;
       height: 45px;
     }
+    &:before {
+      content: "";
+      background-color: $notebook;
+      width: 20px;
+      height: 20px;
+      border-radius: 50px;
+      position: absolute;
+      top: -46px;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .rings {
+    .ring {
+      width: 20px;
+      height: 20px;
+      border-radius: 50px;
+      position: relative;
+      margin-bottom: 8px;
+    }
   }
 }

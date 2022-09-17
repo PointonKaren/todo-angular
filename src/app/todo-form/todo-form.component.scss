@@ -1,0 +1,35 @@
+@import "../../style/utils/variables";
+
+#wrap-form {
+  form {
+    position: relative;
+    #todo-text,
+    #todo-description,
+    #submit {
+      display: block;
+      margin: auto;
+    }
+    #todoText {
+      width: 80%;
+    }
+    #todo-description {
+      width: 95%;
+      height: 35px;
+      resize: none;
+    }
+    #submit {
+      margin-bottom: 10px;
+    }
+    .required-mark {
+      position: absolute;
+      top: 2px;
+      right: 12%;
+    }
+    .requiredField {
+      margin: 0;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+  }
+}
