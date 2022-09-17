@@ -1,14 +1,21 @@
 <div class="list">
   <h2>Liste des tâches</h2>
-  <ul id="todoList" *ngFor="let task of tasks">
-    <li>
-      {{ task.text }} {{ task.id }}
-      <span class="detail-button" (click)="onSelect(task)">🔍</span>
-      <button class="delete" (click)="deleteTask(task)">✕</button>
-    </li>
-  </ul>
-  <div *ngIf="selectedTask">
-    <h2>{{ selectedTask.description }}</h2>
-    <span>id: {{ selectedTask.id }}</span>
+  <div *ngIf="tasks.length > 0">
+    <ul id="todoList">
+      <li *ngFor="let task of tasks">
+        {{ task.text }} {{ task.id }}
+        <!-- <span class="detail-button" (click)="onSelect(task)">🔍</span> -->
+        <span class="detail-button" (click)="displayDetail(task)">🔍</span>
+        <button class="delete" (click)="deleteTask(task)">✕</button>
+      </li>
+    </ul>
+  </div>
+  <!-- <app-task-description *ngIf="selectedTask"></app-task-description> -->
+  <div *ngIf="display">
+    <!-- onClick = event personnalisé qui appelle la fonction closeDetail -->
+    <app-task-description
+      [task]="selectedTask"
+      (onClick)="closeDetail($event)"
+    ></app-task-description>
   </div>
 </div>

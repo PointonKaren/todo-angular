@@ -1,1 +1,5 @@
-<p>task-description works!</p>
+<div id="detailedTask">
+  <p>{{ task?.description }}</p>
+  <!-- le clic sur ce bouton passe un boolean à false (aura un impact sur le parent): -->
+  <button class="delete" (click)="closeDetail(false)">✕</button>
+</div>
