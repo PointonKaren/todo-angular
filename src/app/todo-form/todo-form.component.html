@@ -1,7 +1,16 @@
 <div class="form">
   <h2>Ajouter une tâche</h2>
-  <label for="addTask">Ajouter une tâche</label>
-  <input type="text" [formControl]="addTodoForm" (keyup.enter)="addTodo()" /> * Champ requis
-  <input type="text" [formControl]="addDescriptionForm" (keyup.enter)="addTodo()" />
-  <button type="button" (click)="addTodo()" class="submit">Ajouter la tâche</button>
+  <label for="addTodoForm">
+    <input
+      type="text"
+      [formControl]="addTodoForm"
+      [(ngModel)]="todoText"
+      placeholder="Ajouter une tâche"
+    />
+    * Champ requis
+  </label>
+  <input type="text" [formControl]="addDescriptionForm" placeholder="Ajouter une description" />
+  <button type="button" (click)="addTodo(todoText)" class="submit" [disabled]="!todoText">
+    Ajouter la tâche
+  </button>
 </div>

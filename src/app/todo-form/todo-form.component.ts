@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl, Validators } from "@angular/forms";
 
-import { Tasks } from "../mock.tasks";
+import { Tasks } from "../tasks/mock.tasks";
 
 @Component({
   selector: "app-todo-form",
@@ -11,14 +11,18 @@ import { Tasks } from "../mock.tasks";
 export class TodoFormComponent implements OnInit {
   addTodoForm = new FormControl("");
   addDescriptionForm = new FormControl("");
+
   tasks = Tasks;
+  todoText!: string;
+
   constructor() {}
+
   /**
    * Fonction pour ajouter un Todo
    */
-  addTodo = () => {
+  addTodo = (todoText: string) => {
     this.tasks.push({
-      text: `${this.addTodoForm.value?.trim()}`,
+      text: todoText,
       description: `${this.addDescriptionForm.value?.trim()}`,
       checked: false,
       id: Date.now(),
