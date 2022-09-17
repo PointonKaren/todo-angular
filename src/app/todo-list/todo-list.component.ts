@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewContainerRef, ViewChild, ComponentRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { Task } from "../tasks/task";
 import { Tasks } from "../tasks/mock.tasks";
-import { TaskDescriptionComponent } from "./../task-description/task-description.component";
 
 @Component({
   selector: "app-todo-list",

@@ -4,13 +4,11 @@
     <ul id="todoList">
       <li *ngFor="let task of tasks">
         {{ task.text }} {{ task.id }}
-        <!-- <span class="detail-button" (click)="onSelect(task)">🔍</span> -->
         <span class="detail-button" (click)="displayDetail(task)">🔍</span>
         <button class="delete" (click)="deleteTask(task)">✕</button>
       </li>
     </ul>
   </div>
-  <!-- <app-task-description *ngIf="selectedTask"></app-task-description> -->
   <div *ngIf="display">
     <!-- onClick = event personnalisé qui appelle la fonction closeDetail -->
     <app-task-description
