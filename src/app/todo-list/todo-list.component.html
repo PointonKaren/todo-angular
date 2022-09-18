@@ -6,9 +6,9 @@
   </p>
   <div *ngIf="tasks.length > 0">
     <ul id="todoList">
-      <li *ngFor="let task of tasks" class="todo-item">
+      <li *ngFor="let task of tasks" class="todo-item" [ngClass]="{ done: task.checked }">
         <input type="checkbox" id="{{ task.id }}" />
-        <label for="{{ task.id }}" class="tick js-tick"></label>
+        <label for="{{ task.id }}" class="tick" (click)="isChecked(task)"></label>
         <span>{{ task.text }}</span>
         <button class="detail-button" (click)="displayDetail(task)">🔍</button>
         <button class="delete-button" (click)="deleteTask(task)">✕</button>

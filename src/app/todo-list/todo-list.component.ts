@@ -16,9 +16,10 @@ export class TodoListComponent implements OnInit {
   taskToDelete?: Task;
 
   display = false;
+  checked = false;
   /**
    * Trigger la présence ou non du component de description d'une tâche
-   * @param task : Object
+   * @param {Object} task
    */
   displayDetail(task: Task) {
     this.selectedTask = task;
@@ -36,8 +37,17 @@ export class TodoListComponent implements OnInit {
   }
 
   /**
+   * Ajoute/retire la class done à la li si la tâche est cochée/décochée
+   * @param {Object} task
+   */
+  isChecked = (task: Task) => {
+    this.selectedTask = task;
+    task.checked = !task.checked;
+  };
+
+  /**
    * Supprimer une tâche
-   * @param task : Object
+   * @param {Object} task
    */
   deleteTask = (task: Task) => {
     let indexToDelete = this.tasks.indexOf(task);

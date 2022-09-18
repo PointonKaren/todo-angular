@@ -25,18 +25,17 @@ export class TodoFormComponent implements OnInit {
       text: todoText,
       description: `${this.addDescriptionForm.value?.trim()}`,
       checked: false,
-      id: Date.now(),
+      id: this.tasks.length + 1,
     });
     this.sortArray();
     console.log(this.tasks);
   };
 
   sortArray = () => {
-    this.tasks.sort((a, b) => Number(b.checked) - Number(a.checked));
+    this.tasks.sort((a, b) => Number(a.id) - Number(b.id));
   };
 
   ngOnInit(): void {
-    console.log(this.tasks);
     this.sortArray();
   }
 }
