@@ -19,7 +19,7 @@ export class TodoListComponent implements OnInit {
   checked = false;
   /**
    * Trigger la présence ou non du component de description d'une tâche
-   * @param {Object} task
+   * @param task
    */
   displayDetail(task: Task) {
     this.selectedTask = task;
@@ -38,7 +38,7 @@ export class TodoListComponent implements OnInit {
 
   /**
    * Ajoute/retire la class done à la li si la tâche est cochée/décochée
-   * @param {Object} task
+   * @param task
    */
   isChecked = (task: Task) => {
     this.selectedTask = task;
@@ -47,7 +47,7 @@ export class TodoListComponent implements OnInit {
 
   /**
    * Supprimer une tâche
-   * @param {Object} task
+   * @param task
    */
   deleteTask = (task: Task) => {
     let indexToDelete = this.tasks.indexOf(task);
@@ -57,8 +57,11 @@ export class TodoListComponent implements OnInit {
     } else {
       console.log("La tâche n'existe pas.");
     }
+    this.updateLocalStorage();
   };
-
+  updateLocalStorage = () => {
+    localStorage.setItem("localStorage", JSON.stringify(this.tasks));
+  };
   ngOnInit() {
     this.selectedTask = { text: "", description: "", checked: false, id: -1 };
   }

@@ -28,7 +28,11 @@ export class TodoFormComponent implements OnInit {
       id: this.tasks.length + 1,
     });
     this.sortArray();
-    console.log(this.tasks);
+    this.updateLocalStorage();
+  };
+
+  updateLocalStorage = () => {
+    localStorage.setItem("localStorage", JSON.stringify(this.tasks));
   };
 
   sortArray = () => {
@@ -37,5 +41,6 @@ export class TodoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.sortArray();
+    this.updateLocalStorage();
   }
 }
