@@ -27,7 +27,16 @@ export class TodoFormComponent implements OnInit {
       checked: false,
       id: Date.now(),
     });
+    this.sortArray();
+    console.log(this.tasks);
   };
 
-  ngOnInit(): void {}
+  sortArray = () => {
+    this.tasks.sort((a, b) => Number(b.checked) - Number(a.checked));
+  };
+
+  ngOnInit(): void {
+    console.log(this.tasks);
+    this.sortArray();
+  }
 }
