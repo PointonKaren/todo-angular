@@ -10,6 +10,7 @@
       id="todo-text"
       [formControl]="addTodoForm"
       [(ngModel)]="todoText"
+      (keydown.enter)="sendIt($event)"
     />
     <span class="required-mark">*</span>
     <p class="requiredField">* Champ requis</p>

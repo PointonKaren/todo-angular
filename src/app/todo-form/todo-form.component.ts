@@ -16,6 +16,18 @@ export class TodoFormComponent implements OnInit {
   todoText!: string;
 
   constructor() {}
+  /**
+   * Fonction qui permet d'ajouter le contenu de l'input en faisant Enter s'il n'est pas vide
+   * @param event
+   */
+  sendIt = (event: any) => {
+    event.preventDefault();
+    if (event.target.value === "") {
+      console.log("vide");
+    } else {
+      this.addTodo(event.target.value);
+    }
+  };
 
   /**
    * Fonction pour ajouter un Todo
