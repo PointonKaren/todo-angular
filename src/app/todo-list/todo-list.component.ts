@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl } from "@angular/forms";
 
-import { Task } from "../tasks/task";
 import { Tasks } from "../tasks/mock.tasks";
+import { Task } from "../tasks/task";
 
 @Component({
   selector: "app-todo-list",
@@ -9,15 +10,56 @@ import { Tasks } from "../tasks/mock.tasks";
   styleUrls: ["./todo-list.component.scss"],
 })
 export class TodoListComponent implements OnInit {
-  constructor() {}
-
+  addTodoForm = new FormControl("");
+  addDescriptionForm = new FormControl("");
   storage = localStorage.getItem("storedTasks");
   tasks = JSON.parse(this.storage != null ? this.storage : JSON.stringify(Tasks));
+
   selectedTask?: Task;
   taskToDelete?: Task;
 
   display = false;
   checked = false;
+
+  todoText!: string;
+
+  // constructor(private todoListService: TodoListService) {}
+  constructor() {}
+  /**
+   * Fonction qui permet d'ajouter le contenu de l'input en faisant Enter s'il n'est pas vide
+   * @param event
+   */
+  sendIt = (event: any) => {
+    event.preventDefault();
+    if (event.target.value === "") {
+      alert("Le champ ne doit pas être vide !");
+    } else {
+      this.addTodo(event.target.value);
+    }
+  };
+
+  /**
+   * Ajouter un Todo
+   * @param todoText
+   */
+  addTodo = (todoText: string) => {
+    this.getLocalStorage();
+    console.log(this.tasks);
+    this.tasks.push({
+      text: todoText,
+      description: `${this.addDescriptionForm.value?.trim()}`,
+      checked: false,
+      id: this.tasks.length + 1,
+    });
+    this.todoText = "";
+    this.addDescriptionForm.reset();
+    this.updateLocalStorage();
+    this.sortArray();
+  };
+
+  sortArray = () => {
+    this.tasks.sort((a: Task, b: Task) => Number(a.id) - Number(b.id));
+  };
 
   /**
    * Trigger la présence ou non du component de description d'une tâche
@@ -73,7 +115,9 @@ export class TodoListComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.getLocalStorage();
+    this.sortArray();
+
     this.selectedTask = { text: "", description: "", checked: false, id: -1 };
-    console.log(`depuis todo-list : ${this.storage}`);
   }
 }

@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import { RingsComponent } from "./rings/rings.component";
-import { TodoFormComponent } from "./todo-form/todo-form.component";
 import { TaskDescriptionComponent } from "./task-description/task-description.component";
 import { MainComponent } from "./main/main.component";
 
@@ -15,7 +14,6 @@ import { MainComponent } from "./main/main.component";
     AppComponent,
     TodoListComponent,
     RingsComponent,
-    TodoFormComponent,
     TaskDescriptionComponent,
     MainComponent,
   ],
