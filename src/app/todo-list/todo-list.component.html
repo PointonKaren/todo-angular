@@ -13,20 +13,6 @@
         <button class="detail-button" (click)="displayDetail(task)">🔍</button>
         <button class="delete-button" (click)="deleteTask(task)">✕</button>
       </li>
-      <!-- <li class="todo-item done">
-        <input type="checkbox" id="0" />
-        <label for="0" class="tick js-tick"></label>
-        <span>yo 2</span>
-        <button class="detail-button">🔍</button>
-        <button class="delete-button">✕</button>
-      </li>
-      <li class="todo-item">
-        <input type="checkbox" id="0" />
-        <label for="0" class="tick js-tick"></label>
-        <span>yo 2</span>
-        <button class="detail-button">🔍</button>
-        <button class="delete-button">✕</button>
-      </li> -->
     </ul>
   </div>
   <div *ngIf="display">
@@ -36,9 +22,4 @@
       (onClick)="closeDetail($event)"
     ></app-task-description>
   </div>
-  <!-- <div id="detailedTask">
-    <button class="delete-button delete-postit">✕</button>
-    <h3 id="detailedTask--text">a aa aaaaa aaaaaaa</h3>
-    <p id="detailedTask--description">42</p>
-  </div> -->
 </div>
