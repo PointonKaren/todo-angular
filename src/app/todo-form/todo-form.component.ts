@@ -39,6 +39,8 @@ export class TodoFormComponent implements OnInit {
       checked: false,
       id: this.tasks.length + 1,
     });
+    this.todoText = "";
+    this.addDescriptionForm.reset();
     this.sortArray();
     this.updateLocalStorage();
   };
