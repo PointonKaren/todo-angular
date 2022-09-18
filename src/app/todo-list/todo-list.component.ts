@@ -11,12 +11,14 @@ import { Tasks } from "../tasks/mock.tasks";
 export class TodoListComponent implements OnInit {
   constructor() {}
 
-  tasks = Tasks; // Tableau des tâches
+  storage = localStorage.getItem("storedTasks");
+  tasks = JSON.parse(this.storage != null ? this.storage : JSON.stringify(Tasks));
   selectedTask?: Task;
   taskToDelete?: Task;
 
   display = false;
   checked = false;
+
   /**
    * Trigger la présence ou non du component de description d'une tâche
    * @param task
@@ -43,6 +45,7 @@ export class TodoListComponent implements OnInit {
   isChecked = (task: Task) => {
     this.selectedTask = task;
     task.checked = !task.checked;
+    this.updateLocalStorage();
   };
 
   /**
@@ -55,14 +58,22 @@ export class TodoListComponent implements OnInit {
     if (indexToDelete != -1) {
       this.tasks.splice(indexToDelete, 1);
     } else {
-      console.log("La tâche n'existe pas.");
+      console.log("La tâche n'existe pas");
     }
     this.updateLocalStorage();
   };
-  updateLocalStorage = () => {
-    localStorage.setItem("localStorage", JSON.stringify(this.tasks));
+
+  getLocalStorage = () => {
+    this.storage = localStorage.getItem("storedTasks");
+    this.tasks = JSON.parse(this.storage != null ? this.storage : JSON.stringify(Tasks));
   };
+
+  updateLocalStorage = () => {
+    localStorage.setItem("storedTasks", JSON.stringify(this.tasks));
+  };
+
   ngOnInit() {
     this.selectedTask = { text: "", description: "", checked: false, id: -1 };
+    console.log(`depuis todo-list : ${this.storage}`);
   }
 }
