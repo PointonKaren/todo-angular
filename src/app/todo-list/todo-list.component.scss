@@ -33,6 +33,9 @@
       -webkit-box-pack: justify;
       -ms-flex-pack: justify;
       justify-content: space-between;
+      input[type="checkbox"] {
+        display: none;
+      }
       .tick {
         width: 20px;
         height: 20px;
