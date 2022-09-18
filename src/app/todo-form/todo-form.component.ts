@@ -23,7 +23,7 @@ export class TodoFormComponent implements OnInit {
   sendIt = (event: any) => {
     event.preventDefault();
     if (event.target.value === "") {
-      console.log("vide");
+      alert("Le champ ne doit pas être vide !");
     } else {
       this.addTodo(event.target.value);
     }
