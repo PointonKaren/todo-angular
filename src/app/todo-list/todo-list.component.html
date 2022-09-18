@@ -1,31 +1,46 @@
+<div id="wrap-form">
+  <h2>Ajouter une tâche</h2>
+  <form>
+    <input
+      type="text"
+      placeholder="Ajouter une tâche"
+      autofocus
+      aria-label="Taper la tâche à effectuer"
+      maxlength="20"
+      id="todo-text"
+      [formControl]="addTaskForm"
+      [(ngModel)]="todoText"
+      (keydown.enter)="sendIt($event)"
+    />
+    <span class="required-mark">*</span>
+    <p class="requiredField">* Champ requis</p>
+    <textarea
+      type="text"
+      aria-label="détail de la tâche"
+      placeholder="Ajouter une description (facultatif)"
+      id="todo-description"
+      [formControl]="addDescriptionForm"
+    ></textarea>
+    <br />
+    <button type="button" id="submit" (click)="addTask(todoText)" [disabled]="!todoText">
+      Ajouter la tâche
+    </button>
+  </form>
+</div>
 <div id="list">
   <h2>Liste des tâches</h2>
-  <p>
-    <span class="numberOfTodos">Il y a 4 tâches dans la liste</span>
-    <span class="numberOfChecked">dont 2 cochées.</span>
-  </p>
+  <p class="noTask" *ngIf="tasks.length == 0">Aucune tâche dans la liste.</p>
   <div *ngIf="tasks.length > 0">
+    <p class="numberOfTasks">
+      Tâche(s) terminée(s) : {{ getNumberOfChecked() }}/{{ tasks.length }}.
+    </p>
     <ul id="todoList">
-      <li *ngFor="let task of tasks" class="todo-item">
+      <li *ngFor="let task of tasks" class="todo-item" [ngClass]="{ done: task.checked }">
         <input type="checkbox" id="{{ task.id }}" />
-        <label for="{{ task.id }}" class="tick js-tick"></label>
+        <label for="{{ task.id }}" class="tick" (click)="isChecked(task)"></label>
         <span>{{ task.text }}</span>
         <button class="detail-button" (click)="displayDetail(task)">🔍</button>
         <button class="delete-button" (click)="deleteTask(task)">✕</button>
-      </li>
-      <li class="todo-item done">
-        <input type="checkbox" id="0" />
-        <label for="0" class="tick js-tick"></label>
-        <span>yo 2</span>
-        <button class="detail-button">🔍</button>
-        <button class="delete-button">✕</button>
-      </li>
-      <li class="todo-item">
-        <input type="checkbox" id="0" />
-        <label for="0" class="tick js-tick"></label>
-        <span>yo 2</span>
-        <button class="detail-button">🔍</button>
-        <button class="delete-button">✕</button>
       </li>
     </ul>
   </div>
@@ -36,9 +51,4 @@
       (onClick)="closeDetail($event)"
     ></app-task-description>
   </div>
-  <!-- <div id="detailedTask">
-    <button class="delete-button delete-postit">✕</button>
-    <h3 id="detailedTask--text">a aa aaaaa aaaaaaa</h3>
-    <p id="detailedTask--description">42</p>
-  </div> -->
 </div>

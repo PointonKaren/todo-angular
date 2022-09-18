@@ -1,90 +1,177 @@
 @import "../../style/utils/variables";
 
-#list {
-  h2 {
-    margin: 0;
-  }
-  #todoList {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-    -ms-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-    margin-top: -10px;
-    padding: 0;
-    padding-top: 5px;
-    max-height: 25vh;
-    gap: 1vh;
-    overflow-y: scroll;
-    .todo-item {
-      list-style: none;
-      width: 80vw;
-      max-width: 220px;
+#wrap-form {
+  margin-bottom: -10px;
+  padding-top: 5px;
+  form {
+    position: relative;
+    #todo-text,
+    #todo-description,
+    #submit {
+      display: block;
       margin: auto;
-      margin-bottom: 1vh;
+    }
+    #todoText {
+      width: 80%;
+    }
+    #todo-description {
+      width: 95%;
+      height: 35px;
+      resize: none;
+    }
+    #submit {
+      margin-bottom: 10px;
+    }
+    .required-mark {
+      position: absolute;
+      top: 2px;
+      right: 20%;
+    }
+    .requiredField {
+      margin: 0;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+  }
+}
+
+#list {
+  .noTask {
+    font-size: 1.8rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 15vh;
+    -webkit-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  div {
+    .numberOfTasks {
+      margin-top: -5px;
+    }
+    #todoList {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      .tick {
-        width: 20px;
-        height: 20px;
-        padding: 3px;
-        border: 3px solid $check;
-        border-radius: 50px;
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
-        display: inline-flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+      flex-direction: column-reverse;
+      padding: 0;
+      max-height: 32vh;
+      gap: 1vh;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      word-break: break-all;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .todo-item {
+        list-style: none;
+        width: 80vw;
+        max-width: 220px;
+        margin: auto;
+        margin-bottom: 1vh;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        cursor: pointer;
-        &:before {
-          content: "✓";
-          color: $tick;
-          font-weight: bold;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        input[type="checkbox"] {
           display: none;
         }
+        .tick {
+          width: 20px;
+          height: 20px;
+          padding: 3px;
+          border: 3px solid $check;
+          border-radius: 50px;
+          display: -webkit-inline-box;
+          display: -ms-inline-flexbox;
+          display: inline-flex;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          cursor: pointer;
+          &:before {
+            content: "✓";
+            color: $tick;
+            font-weight: bold;
+            display: none;
+          }
+        }
+        span {
+          -webkit-box-flex: 1;
+          -ms-flex-positive: 1;
+          flex-grow: 1;
+          text-align: center;
+          max-width: 120px;
+          padding-left: 5px;
+          padding-right: 2px;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+        }
       }
-      span {
-        -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-        flex-grow: 1;
-        text-align: center;
-        max-width: 120px;
-        padding-left: 5px;
-        padding-right: 2px;
-        overflow: hidden;
-        -o-text-overflow: ellipsis;
-        text-overflow: ellipsis;
+      .done {
+        -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+        order: -1;
+        span {
+          text-decoration: line-through;
+          color: $checked;
+        }
+        .detail-button {
+          text-decoration: none;
+          border-color: $checked;
+        }
+        .tick {
+          &:before {
+            display: inline;
+          }
+        }
       }
     }
-    .done {
-      -webkit-box-ordinal-group: 0;
-      -ms-flex-order: -1;
-      order: -1;
-      span {
-        text-decoration: line-through;
-        color: $checked;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  #list {
+    div {
+      .numberOfTasks {
+        margin-top: 5px;
       }
-      .detail-button {
-        text-decoration: none;
-        border-color: $checked;
+      #todoList {
+        max-height: 440px;
       }
-      .tick {
-        &:before {
-          display: inline;
-        }
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  #list {
+    div {
+      #todoList {
+        max-height: 380px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  #list {
+    div {
+      #todoList {
+        max-height: 255px;
       }
     }
   }

@@ -1,16 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
 
+h1,
 h2,
 h3 {
   font-family: "Cookie", cursive;
+  color: $ink;
 }
 
-h1,
 h2,
 p {
   text-align: center;
 }
 
+h1 {
+  font-size: 2.2rem;
+}
 h2 {
-  font-size: 2rem;
+  font-size: 1.9rem;
+  margin-bottom: 5px;
 }
