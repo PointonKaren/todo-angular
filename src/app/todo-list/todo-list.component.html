@@ -8,7 +8,7 @@
       aria-label="Taper la tâche à effectuer"
       maxlength="20"
       id="todo-text"
-      [formControl]="addTodoForm"
+      [formControl]="addTaskForm"
       [(ngModel)]="todoText"
       (keydown.enter)="sendIt($event)"
     />
@@ -22,17 +22,18 @@
       [formControl]="addDescriptionForm"
     ></textarea>
     <br />
-    <button type="button" id="submit" (click)="addTodo(todoText)" [disabled]="!todoText">
+    <button type="button" id="submit" (click)="addTask(todoText)" [disabled]="!todoText">
       Ajouter la tâche
     </button>
   </form>
 </div>
-
 <div id="list">
   <h2>Liste des tâches</h2>
   <p class="noTask" *ngIf="tasks.length == 0">Aucune tâche dans la liste.</p>
   <div *ngIf="tasks.length > 0">
-    <p class="numberOfTasks">Tâche(s) terminées : {{ getNumberOfChecked() }}/{{ tasks.length }}.</p>
+    <p class="numberOfTasks">
+      Tâche(s) terminée(s) : {{ getNumberOfChecked() }}/{{ tasks.length }}.
+    </p>
     <ul id="todoList">
       <li *ngFor="let task of tasks" class="todo-item" [ngClass]="{ done: task.checked }">
         <input type="checkbox" id="{{ task.id }}" />

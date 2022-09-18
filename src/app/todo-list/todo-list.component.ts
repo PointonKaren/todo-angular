@@ -10,7 +10,7 @@ import { Task } from "../tasks/task";
   styleUrls: ["./todo-list.component.scss"],
 })
 export class TodoListComponent implements OnInit {
-  addTodoForm = new FormControl("");
+  addTaskForm = new FormControl("");
   addDescriptionForm = new FormControl("");
   storage = localStorage.getItem("storedTasks");
   tasks = JSON.parse(this.storage != null ? this.storage : JSON.stringify(Tasks));
@@ -23,10 +23,17 @@ export class TodoListComponent implements OnInit {
 
   todoText!: string;
 
-  // constructor(private todoListService: TodoListService) {}
   constructor() {}
+
   /**
-   * Fonction qui permet d'ajouter le contenu de l'input en faisant Enter s'il n'est pas vide
+   * Tri du tableau des tâches
+   */
+  sortArray = () => {
+    this.tasks.sort((a: Task, b: Task) => Number(a.id) - Number(b.id));
+  };
+
+  /**
+   * Fonction qui permet d'ajouter le contenu de l'input en faisant Enter, s'il n'est pas vide
    * @param event
    */
   sendIt = (event: any) => {
@@ -34,19 +41,19 @@ export class TodoListComponent implements OnInit {
     if (event.target.value === "") {
       alert("Le champ ne doit pas être vide !");
     } else {
-      this.addTodo(event.target.value);
+      this.addTask(event.target.value);
     }
   };
 
   /**
-   * Ajouter un Todo
+   * Ajouter une tâche
    * @param todoText
    */
-  addTodo = (todoText: string) => {
+  addTask = (todoText: string) => {
     this.getLocalStorage();
     console.log(this.tasks);
     console.log(this.addDescriptionForm.value?.trim());
-    var description =
+    let description =
       this.addDescriptionForm.value?.trim() == undefined
         ? ""
         : this.addDescriptionForm.value?.trim();
@@ -62,8 +69,23 @@ export class TodoListComponent implements OnInit {
     this.sortArray();
   };
 
-  sortArray = () => {
-    this.tasks.sort((a: Task, b: Task) => Number(a.id) - Number(b.id));
+  /**
+   * Supprimer une tâche
+   * @param task
+   */
+  deleteTask = (task: Task) => {
+    let indexToDelete = this.tasks.indexOf(task);
+    // Si la tâche a été supprimée d'une autre manière (ex du local storage)
+    if (indexToDelete != -1) {
+      this.tasks.splice(indexToDelete, 1);
+    } else {
+      console.log("La tâche n'existe pas");
+    }
+    this.updateLocalStorage();
+
+    if (this.display) {
+      this.display = false;
+    }
   };
 
   /**
@@ -86,7 +108,7 @@ export class TodoListComponent implements OnInit {
   }
 
   /**
-   * Ajoute/retire la class done à la li si la tâche est cochée/décochée
+   * Ajoute/retire la class "done" à la li si la tâche est cochée/décochée
    * @param task
    */
   isChecked = (task: Task) => {
@@ -96,33 +118,24 @@ export class TodoListComponent implements OnInit {
   };
 
   /**
-   * Supprimer une tâche
-   * @param task
+   * Récupérer les éléments depuis le local storage
    */
-  deleteTask = (task: Task) => {
-    let indexToDelete = this.tasks.indexOf(task);
-    // Si la tâche a été supprimée d'une autre manière (ex du local storage)
-    if (indexToDelete != -1) {
-      this.tasks.splice(indexToDelete, 1);
-    } else {
-      console.log("La tâche n'existe pas");
-    }
-    this.updateLocalStorage();
-
-    if (this.display) {
-      this.display = false;
-    }
-  };
-
   getLocalStorage = () => {
     this.storage = localStorage.getItem("storedTasks");
     this.tasks = JSON.parse(this.storage != null ? this.storage : JSON.stringify(Tasks));
   };
 
+  /**
+   * Mettre à jour le local storage
+   */
   updateLocalStorage = () => {
     localStorage.setItem("storedTasks", JSON.stringify(this.tasks));
   };
 
+  /**
+   * Récupérer les tâches cochées
+   * @returns Number
+   */
   getNumberOfChecked = () => {
     let numberOfChecked = 0;
     for (let task of this.tasks) {
@@ -136,7 +149,6 @@ export class TodoListComponent implements OnInit {
   ngOnInit() {
     this.getLocalStorage();
     this.sortArray();
-
     this.selectedTask = { text: "", description: "", checked: false, id: -1 };
   }
 }
