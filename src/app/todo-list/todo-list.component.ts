@@ -45,9 +45,14 @@ export class TodoListComponent implements OnInit {
   addTodo = (todoText: string) => {
     this.getLocalStorage();
     console.log(this.tasks);
+    console.log(this.addDescriptionForm.value?.trim());
+    var description =
+      this.addDescriptionForm.value?.trim() == undefined
+        ? ""
+        : this.addDescriptionForm.value?.trim();
     this.tasks.push({
       text: todoText,
-      description: `${this.addDescriptionForm.value?.trim()}`,
+      description: description,
       checked: false,
       id: this.tasks.length + 1,
     });
@@ -103,6 +108,10 @@ export class TodoListComponent implements OnInit {
       console.log("La tâche n'existe pas");
     }
     this.updateLocalStorage();
+
+    if (this.display) {
+      this.display = false;
+    }
   };
 
   getLocalStorage = () => {
@@ -112,6 +121,16 @@ export class TodoListComponent implements OnInit {
 
   updateLocalStorage = () => {
     localStorage.setItem("storedTasks", JSON.stringify(this.tasks));
+  };
+
+  getNumberOfChecked = () => {
+    let numberOfChecked = 0;
+    for (let task of this.tasks) {
+      if (task.checked) {
+        numberOfChecked += 1;
+      }
+    }
+    return numberOfChecked;
   };
 
   ngOnInit() {

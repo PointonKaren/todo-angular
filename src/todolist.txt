@@ -1,4 +1,0 @@
-<!-- TODO: Afficher le nombre total de tâches -->
-<!-- TODO: Afficher le nombre de tâches terminées -->
-<!-- TODO: Quand une tâche est supprimée, supprimer post-it également -->
-<!-- TODO: Faire le responsive -->

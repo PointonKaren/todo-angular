@@ -3,7 +3,7 @@
 #detailedTask {
   position: fixed;
   top: 40vh;
-  left: 18vw;
+  left: 20vw;
   -webkit-transform: rotate(-20deg);
   -ms-transform: rotate(-20deg);
   transform: rotate(-20deg);
@@ -37,11 +37,36 @@
     margin-left: 25px;
     margin-bottom: 10px;
     margin-top: 10px;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   &--description {
     margin: auto;
     width: 198px;
     overflow-y: scroll;
     max-height: 145px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  #detailedTask {
+    left: 40vw;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  #detailedTask {
+    left: 70vw;
+    top: 20vh;
+    -webkit-transform: rotate(20deg);
+        -ms-transform: rotate(20deg);
+            transform: rotate(20deg);
   }
 }
