@@ -14,7 +14,7 @@
   <p id="copyright">
     <span id="copyright-text"><span class="copyright">©</span>Copyright</span>
     <span id="copyright-logo">©</span>
-    <span id="year"></span> - <span class="important">Karen Pointon</span> - Tous droits réservés
+    {{ date | date: "y" }} - <span class="important">Karen Pointon</span> - Tous droits réservés
   </p>
 </footer>
 <!-- TODO: Faire le responsive -->
@@ -23,4 +23,3 @@
 <!-- TODO: Afficher le nombre total de tâches -->
 <!-- TODO: Afficher le nombre de tâches terminées -->
 <!-- TODO: Ajouter la gestion des tâches dans le local storage -->
-<!-- TODO: dynamiser l'année dans le footer -->
