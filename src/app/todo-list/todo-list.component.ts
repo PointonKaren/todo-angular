@@ -38,7 +38,7 @@ export class TodoListComponent implements OnInit {
    */
   sendIt = (event: any) => {
     event.preventDefault();
-    if (event.target.value === "") {
+    if ((event.target.value = "")) {
       alert("Le champ ne doit pas être vide !");
     } else {
       this.addTask(event.target.value);
@@ -53,7 +53,7 @@ export class TodoListComponent implements OnInit {
     this.getLocalStorage();
     console.log(this.tasks);
     console.log(this.addDescriptionForm.value?.trim());
-    let description =
+    var description =
       this.addDescriptionForm.value?.trim() == undefined
         ? ""
         : this.addDescriptionForm.value?.trim();
@@ -74,7 +74,7 @@ export class TodoListComponent implements OnInit {
    * @param task
    */
   deleteTask = (task: Task) => {
-    let indexToDelete = this.tasks.indexOf(task);
+    var indexToDelete = this.tasks.indexOf(task);
     // Si la tâche a été supprimée d'une autre manière (ex du local storage)
     if (indexToDelete != -1) {
       this.tasks.splice(indexToDelete, 1);
@@ -95,7 +95,7 @@ export class TodoListComponent implements OnInit {
   displayDetail(task: Task) {
     this.selectedTask = task;
     this.display = true;
-    if (this.selectedTask.description === "") {
+    if ((this.selectedTask.description = "")) {
       this.selectedTask.description = "Il n'y a aucune description pour cette tâche.";
     }
   }
@@ -137,7 +137,7 @@ export class TodoListComponent implements OnInit {
    * @returns Number
    */
   getNumberOfChecked = () => {
-    let numberOfChecked = 0;
+    var numberOfChecked = 0;
     for (let task of this.tasks) {
       if (task.checked) {
         numberOfChecked += 1;
