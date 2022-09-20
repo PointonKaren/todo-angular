@@ -55,6 +55,13 @@
   }
 }
 
+@media only screen and (max-height: 375px) {
+  #detailedTask {
+    left: 30vw;
+    top: 30vh;
+  }
+}
+
 @media screen and (min-width: 700px) {
   #detailedTask {
     left: 40vw;
