@@ -3,7 +3,7 @@
   <form>
     <input
       type="text"
-      placeholder="Ajouter une tâche"
+      placeholder="Ajouter une tâche *"
       autofocus
       aria-label="Taper la tâche à effectuer"
       maxlength="20"
@@ -12,7 +12,6 @@
       [(ngModel)]="todoText"
       (keydown.enter)="sendIt($event)"
     />
-    <span class="required-mark">*</span>
     <p class="requiredField">* Champ requis</p>
     <textarea
       type="text"
