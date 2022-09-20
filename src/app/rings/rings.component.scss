@@ -12,6 +12,7 @@
   padding-right: 5%;
   padding-top: 2%;
   .ring {
+    outline: 1px solid red;
     background-color: $notebook;
     width: 20px;
     height: 20px;
@@ -19,14 +20,15 @@
     position: relative;
     margin-bottom: 8px;
     &:after {
+      outline: 1px solid green;
       content: "";
       position: absolute;
       background-color: silver;
       border-radius: 5px;
-      top: -35px;
+      top: -40px;
       left: 8px;
       width: 5px;
-      height: 45px;
+      height: 50px;
     }
     &:before {
       content: "";
@@ -35,20 +37,37 @@
       height: 20px;
       border-radius: 50px;
       position: absolute;
-      top: -46px;
+      top: -50px;
       margin-bottom: 8px;
     }
   }
 }
 
-@media screen and (min-width: 600px) {
+@media only screen and (max-height: 375px) {
+  /* Portables - paysage */
   .rings {
     .ring {
-      width: 20px;
-      height: 20px;
-      border-radius: 50px;
-      position: relative;
-      margin-bottom: 8px;
+      &:after {
+        top: -38px;
+        height: 50px;
+      }
+      &:before {
+        top: -47px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .rings {
+    .ring {
+      &:after {
+        top: -42px;
+        height: 55px;
+      }
+      &:before {
+        top: -52px;
+      }
     }
   }
 }
