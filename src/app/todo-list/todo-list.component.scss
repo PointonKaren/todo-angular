@@ -151,13 +151,17 @@
     h2 {
       display: none;
     }
+    .noTask {
+      bottom: 2px;
+    }
     div {
       .numberOfTasks {
         display: none;
       }
       #todoList {
-        height: 40px;
-        outline: 1px solid blue;
+        height: 45px;
+        border-bottom: 1px dotted $notebook;
+        border-top: 1px dotted $notebook;
       }
     }
   }
